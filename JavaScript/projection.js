@@ -1,5 +1,5 @@
 Function.prototype.curry = function(...args) {
-  return f = this.bind(null, ...args);
+  return this.bind(null, ...args);
 };
 
 let projection = (fields, obj) => (Object
