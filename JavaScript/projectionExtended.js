@@ -12,8 +12,8 @@ let persons = [
 
 let md = {
   name: ['name'],
-  place: ['city', upper],
-  age: ['born', age, inc, x => x*x]
+  place: ['city', upper, s => '<' + s + '>'],
+  age: ['born', age]
 };
 
 let projection = (meta, obj) => (Object
