@@ -1,3 +1,5 @@
+'use strict';
+
 Function.prototype.curry = function(...args) {
   return this.bind(null, ...args);
 };

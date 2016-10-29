@@ -1,9 +1,5 @@
 'use strinct';
 
-Function.prototype.curry = function(...args) {
-  return this.bind(null, ...args);
-};
-
 let persons = [
   { name: 'Marcus Aurelius', city: 'Rome', born: 121 },
   { name: 'Victor Glushkov', city: 'Rostov on Don', born: 1923 },
@@ -14,20 +10,26 @@ let persons = [
 
 let md = {
   name: ['name'],
-  place: ['city', upper, s => '<' + s + '>'],
+  place: ['city', s => '<' + upper(s) + '>'],
   age: ['born', age]
 };
 
-let projection = (meta, obj) => (Object
-  .keys(meta)
-  .reduce((hash, key) => (hash[key] = meta[key]
-    .reduce(
-      (val, fn, i) => i === 0 ? obj[fn] : fn(val), null
-    ), hash), {}
-  )
-);
+function projection(meta) {
+  let keys = Object.keys(meta);
+  return obj => {
+    let hash = {};
+    let def, val;
+    keys.forEach(key => {
+      def = meta[key];
+      val = obj[def[0]];
+      if (def.length > 1) val = def[1](val);
+      hash[key] = val;
+    });
+    return hash;
+  };
+}
 
-let p1 = projection.curry(md);
+let p1 = projection(md);
 let data = persons.map(p1);
 console.dir(data);
 

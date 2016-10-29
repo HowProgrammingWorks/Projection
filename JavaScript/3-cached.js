@@ -1,8 +1,10 @@
+'use strinct';
+
 let persons = [
   { name: 'Marcus Aurelius', city: 'Rome', born: 121 },
   { name: 'Victor Glushkov', city: 'Rostov on Don', born: 1923 },
   { name: 'Ibn Arabi', city: 'Murcia', born: 1165 },
-  { name: 'Mao Zedong', city: 'Shaoshan', born: 1596 },
+  { name: 'Mao Zedong', city: 'Shaoshan', born: 1893 },
   { name: 'Rene Descartes', city: 'La Haye en Touraine', born: 1596 }
 ];
 
@@ -19,7 +21,7 @@ function projection(meta) {
       (val, fn, i) => i === 0 ? obj[fn] : fn(val), null
     ), hash
   ), {});
-};
+}
 
 let p1 = projection(md);
 let data = persons.map(p1);
