@@ -14,14 +14,14 @@ const md = {
   age: ['born', age]
 };
 
-function projection(meta) {
+const projection = (meta) => {
   const keys = Object.keys(meta);
   return obj => keys.reduce((hash, key) => (
     hash[key] = meta[key].reduce(
       (val, fn, i) => (i === 0 ? obj[fn] : fn(val)), null
     ), hash
   ), {});
-}
+};
 
 const p1 = projection(md);
 const data = persons.map(p1);
