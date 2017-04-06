@@ -14,7 +14,7 @@ const md = {
   age: ['born', age]
 };
 
-function projection(meta) {
+const projection = (meta) => {
   const keys = Object.keys(meta);
   return obj => {
     const hash = {};
@@ -27,7 +27,7 @@ function projection(meta) {
     });
     return hash;
   };
-}
+};
 
 const p1 = projection(md);
 const data = persons.map(p1);
