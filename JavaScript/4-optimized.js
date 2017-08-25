@@ -11,6 +11,7 @@ const persons = [
 const md = {
   name: ['name'],
   place: ['city', s => '<' + upper(s) + '>'],
+  born: ['born'],
   age: ['born', age]
 };
 
