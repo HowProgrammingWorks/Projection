@@ -36,7 +36,7 @@ console.dir(data);
 
 function capitalize(s) {
   return s.replace(/\w+/g, (word) =>
-     word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
+    word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
   );
 }
 

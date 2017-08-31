@@ -18,13 +18,12 @@ const md = {
   age: ['born', age]
 };
 
-const projection = (meta, obj) => (Object
-  .keys(meta)
-  .reduce((hash, key) => (hash[key] = meta[key]
-    .reduce(
+const projection = (meta, obj) => (
+  Object.keys(meta).reduce((hash, key) => (
+    hash[key] = meta[key].reduce(
       (val, fn, i) => (i === 0 ? obj[fn] : fn(val)), null
-    ), hash), {}
-  )
+    ), hash
+  ), {})
 );
 
 const p1 = projection.curry(md);
@@ -33,7 +32,7 @@ console.dir(data);
 
 function capitalize(s) {
   return s.replace(/\w+/g, (word) =>
-     word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
+    word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
   );
 }
 

@@ -5,8 +5,7 @@ Function.prototype.curry = function(...args) {
 };
 
 const projection = (fields, obj) => (
-  Object
-    .keys(obj)
+  Object.keys(obj)
     .filter(field => fields.includes(field))
     .reduce((hash, key) => (hash[key] = obj[key], hash), {})
 );
@@ -22,5 +21,5 @@ const persons = [
 const p1 = projection.curry(['name', 'born']);
 const p2 = projection.curry(['name']);
 
-const data = persons.map(p1).map(p2);
+const data = persons.map(p2).map(p2);
 console.dir(data);
