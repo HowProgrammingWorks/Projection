@@ -10,19 +10,22 @@ const persons = [
 
 const md = {
   name: ['name'],
-  place: ['city', s => '<' + upper(s) + '>'],
+  place: ['city', s => '<' + s.toUpperCase() + '>'],
   born: ['born'],
   age: ['born', age]
 };
+
+function age(year) {
+  return new Date().getFullYear() - new Date(year + '').getFullYear();
+}
 
 const projection = (meta) => {
   const keys = Object.keys(meta);
   return obj => {
     const hash = {};
-    let def, val;
     keys.forEach(key => {
-      def = meta[key];
-      val = obj[def[0]];
+      const def = meta[key];
+      let val = obj[def[0]];
       if (def.length > 1) val = def[1](val);
       hash[key] = val;
     });
@@ -33,21 +36,3 @@ const projection = (meta) => {
 const p1 = projection(md);
 const data = persons.map(p1);
 console.dir(data);
-
-function capitalize(s) {
-  return s.replace(/\w+/g, (word) =>
-    word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
-  );
-}
-
-function upper(s) {
-  return typeof(s) === 'string' ? s.toUpperCase() : '';
-}
-
-function age(year) {
-  return new Date().getFullYear() - new Date(year + '').getFullYear();
-}
-
-function inc(x) {
-  return ++x;
-}
