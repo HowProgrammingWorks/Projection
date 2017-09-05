@@ -27,24 +27,10 @@ const p1 = projection(md);
 const data = persons.map(p1);
 console.dir(data);
 
-function capitalize(s) {
-  return s.replace(
-    /\w+/g,
-    word => (
-      word.charAt(0).toUpperCase() +
-      word.substr(1).toLowerCase()
-    )
-  );
-}
-
 function upper(s) {
   return typeof(s) === 'string' ? s.toUpperCase() : '';
 }
 
 function age(year) {
   return new Date().getFullYear() - new Date(year + '').getFullYear();
-}
-
-function inc(x) {
-  return ++x;
 }

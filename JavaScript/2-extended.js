@@ -1,8 +1,6 @@
 'use strict';
 
-Function.prototype.curry = function(...args) {
-  return this.bind(null, ...args);
-};
+const curry = (fn, x) => (...args) => fn(x, ...args);
 
 const persons = [
   { name: 'Marcus Aurelius', city: 'Rome', born: 121 },
@@ -26,15 +24,9 @@ const projection = (meta, obj) => (
   ), {})
 );
 
-const p1 = projection.curry(md);
+const p1 = curry(projection, md);
 const data = persons.map(p1);
 console.dir(data);
-
-function capitalize(s) {
-  return s.replace(/\w+/g, (word) =>
-    word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
-  );
-}
 
 function upper(s) {
   return typeof(s) === 'string' ? s.toUpperCase() : '';
@@ -42,8 +34,4 @@ function upper(s) {
 
 function age(year) {
   return new Date().getFullYear() - new Date(year + '').getFullYear();
-}
-
-function inc(x) {
-  return ++x;
 }
