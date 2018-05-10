@@ -1,5 +1,7 @@
 'use strict';
 
+// Projection
+
 const projection = (meta) => {
   const keys = Object.keys(meta);
   return obj => {
@@ -13,10 +15,6 @@ const projection = (meta) => {
     return hash;
   };
 };
-
-const age = (year) => (
-  new Date().getFullYear() - new Date(year + '').getFullYear()
-);
 
 // Dataset
 
@@ -33,8 +31,10 @@ const persons = [
 const md = {
   name: ['name'],
   place: ['city', s => '<' + s.toUpperCase() + '>'],
-  born: ['born'],
-  age: ['born', age]
+  age: ['born', year => (
+    new Date().getFullYear() -
+    new Date(year + '').getFullYear()
+  )]
 };
 
 // Usage

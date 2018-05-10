@@ -1,5 +1,7 @@
 'use strict';
 
+// Projection
+
 const projection = (meta) => {
   const keys = Object.keys(meta);
   return obj => keys.reduce((hash, key) => (
@@ -8,14 +10,6 @@ const projection = (meta) => {
     ), hash
   ), {});
 };
-
-const upper = (s) => (
-  typeof(s) === 'string' ? s.toUpperCase() : ''
-);
-
-const age = (year) => (
-  new Date().getFullYear() - new Date(year + '').getFullYear()
-);
 
 // Dataset
 
@@ -31,8 +25,10 @@ const persons = [
 
 const md = {
   name: ['name'],
-  place: ['city', upper, s => '<' + s + '>'],
-  age: ['born', age]
+  place: ['city', s => '<' + s.toUpperCase() + '>'],
+  age: ['born', year => (
+    new Date().getFullYear() - new Date(year + '').getFullYear()
+  )]
 };
 
 // Usage

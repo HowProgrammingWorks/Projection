@@ -1,5 +1,7 @@
 'use strict';
 
+// Projection
+
 const projection = (meta) => {
   const keys = Object.keys(meta);
   return obj => {
@@ -33,10 +35,9 @@ const md = {
   place: ['city', s => '<' + s.toUpperCase() + '>'],
   born: ['born'],
   age: ['born', year => (
-      new Date().getFullYear() -
-      new Date(year + '').getFullYear()
-    )
-  ]
+    new Date().getFullYear() -
+    new Date(year + '').getFullYear()
+  )]
 };
 
 // Usage
