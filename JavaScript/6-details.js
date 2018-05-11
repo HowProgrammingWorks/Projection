@@ -21,7 +21,6 @@ const projection = (meta) => {
   mapper.join = (key, projection) => {
     keys.push(key);
     meta[key] = [key, val => val.map(projection)];
-    console.dir({ meta });
     return mapper;
   };
   return mapper;

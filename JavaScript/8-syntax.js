@@ -2,38 +2,36 @@
 
 // Projection
 
-const transforms = {
-  string: name => d => d[name],
-  function: fn => d => fn(d),
-  object: name => proj => d => {
-    const data = d[name];
-    if (!data) return data;
-    return data.map(projection(proj));
-  }
-};
-
 const projection = (metadata) => {
   const meta = {};
-  let item, key, type, transform;
+  let item, key, type, cast;
   for (item of metadata) {
     type = typeof(item);
-    transform = transforms[type];
+    cast = projection[type];
     if (type === 'string') key = item;
-    if (type === 'object') transform = transform(key);
-    meta[key] = transform(item);
+    if (type === 'object') cast = cast(key);
+    meta[key] = cast(item);
   }
   const keys = Object.keys(meta);
   const mapper = obj => {
     const hash = {};
-    let key, value, transform;
+    let key, value, cast;
     for (key of keys) {
-      transform = meta[key];
-      value = transform(obj);
+      cast = meta[key];
+      value = cast(obj);
       if (value) hash[key] = value;
     }
     return hash;
   };
   return mapper;
+};
+
+projection.string = name => d => d[name];
+projection.function = fn => d => fn(d);
+projection.object = name => proj => d => {
+  const data = d[name];
+  if (!data) return data;
+  return data.map(projection(proj));
 };
 
 // Dataset
@@ -64,16 +62,16 @@ const persons = [
 
 const md = [
   'name',
-  'places', [
-    'address', d => (d.country.toUpperCase() + ', '+ d.name),
-    'population'
-  ],
   'place', d => '<' + d.city.toUpperCase() + '>',
   'born',
   'age', d => (
     new Date().getFullYear() -
     new Date(d.born + '').getFullYear()
-  )
+  ),
+  'places', [
+    'address', d => (d.country.toUpperCase() + ', ' + d.name),
+    'population'
+  ]
 ];
 
 // Usage
