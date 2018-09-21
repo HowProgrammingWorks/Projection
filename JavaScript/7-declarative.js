@@ -13,7 +13,7 @@ const projection = meta => {
       val = obj[name];
       if (val) {
         if (transform) {
-          val = (typeof(transform) === 'function') ?
+          val = typeof transform === 'function' ?
             transform(val) : val.map(projection(transform));
         }
         hash[key] = val;

@@ -6,7 +6,7 @@ const projection = metadata => {
   const meta = {};
   let item, key, type, cast;
   for (item of metadata) {
-    type = typeof(item);
+    type = typeof item;
     cast = projection[type];
     if (type === 'string') key = item;
     if (type === 'object') cast = cast(key);
