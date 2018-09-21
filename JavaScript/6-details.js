@@ -6,11 +6,10 @@ const projection = meta => {
   const keys = Object.keys(meta);
   const mapper = obj => {
     const hash = {};
-    let name, key, def, val, fn;
-    for (key of keys) {
-      def = meta[key];
-      [name, fn] = def;
-      val = obj[name];
+    for (const key of keys) {
+      const def = meta[key];
+      const [name, fn] = def;
+      let val = obj[name];
       if (val) {
         if (fn) val = fn(val);
         hash[key] = val;

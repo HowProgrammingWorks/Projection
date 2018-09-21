@@ -6,11 +6,10 @@ const projection = meta => {
   const keys = Object.keys(meta);
   const mapper = obj => {
     const hash = {};
-    let name, key, def, val, transform;
-    for (key of keys) {
-      def = meta[key];
-      [name, transform] = def;
-      val = obj[name];
+    for (const key of keys) {
+      const def = meta[key];
+      const [name, transform] = def;
+      let val = obj[name];
       if (val) {
         if (transform) {
           val = typeof transform === 'function' ?

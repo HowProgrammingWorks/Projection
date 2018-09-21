@@ -4,10 +4,10 @@
 
 const projection = metadata => {
   const meta = {};
-  let item, key, type, cast;
-  for (item of metadata) {
-    type = typeof item;
-    cast = projection[type];
+  let key;
+  for (const item of metadata) {
+    const type = typeof item;
+    let cast = projection[type];
     if (type === 'string') key = item;
     if (type === 'object') cast = cast(key);
     meta[key] = cast(item);
@@ -15,10 +15,9 @@ const projection = metadata => {
   const keys = Object.keys(meta);
   const mapper = obj => {
     const hash = {};
-    let key, value, cast;
-    for (key of keys) {
-      cast = meta[key];
-      value = cast(obj);
+    for (const key of keys) {
+      const cast = meta[key];
+      const value = cast(obj);
       if (value) hash[key] = value;
     }
     return hash;
