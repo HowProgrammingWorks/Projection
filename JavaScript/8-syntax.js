@@ -2,7 +2,7 @@
 
 // Projection
 
-const projection = (metadata) => {
+const projection = metadata => {
   const meta = {};
   let item, key, type, cast;
   for (item of metadata) {

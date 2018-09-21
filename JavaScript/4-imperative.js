@@ -2,7 +2,7 @@
 
 // Projection
 
-const projection = (meta) => {
+const projection = meta => {
   const keys = Object.keys(meta);
   return obj => {
     const hash = {};
