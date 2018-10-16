@@ -1,12 +1,10 @@
 'use strict';
 
-const curry = (fn, x) => (...args) => fn(x, ...args);
+const partial = (fn, ...args) => (...rest) => fn(...args.concat(rest));
 
-const projection = (fields, obj) => (
-  Object.keys(obj)
-    .filter(field => fields.includes(field))
-    .reduce((hash, key) => (hash[key] = obj[key], hash), {})
-);
+const projection = (fields, obj) => Object.keys(obj)
+  .filter(field => fields.includes(field))
+  .reduce((hash, key) => (hash[key] = obj[key], hash), {});
 
 // Dataset
 
@@ -20,8 +18,8 @@ const persons = [
 
 // Usage
 
-const p1 = curry(projection, ['name', 'born']);
-const p2 = curry(projection, ['name']);
+const p1 = partial(projection, ['name', 'born']);
+const p2 = partial(projection, ['name']);
 
 const data = persons.map(p1).map(p2);
 console.dir(data);
