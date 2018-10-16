@@ -4,12 +4,10 @@ const partial = (fn, ...args) => (...rest) => fn(...args.concat(rest));
 
 // Projection
 
-const projection = (meta, obj) => Object.keys(meta)
-  .reduce((hash, key) => (
-    hash[key] = meta[key].reduce(
-      (val, fn, i) => (i === 0 ? obj[fn] : fn(val)), null
-    ), hash
-  ), {});
+const projection = (meta, obj) => Object.keys(meta).reduce((hash, key) => (
+  hash[key] = meta[key]
+    .reduce((val, fn, i) => (i === 0 ? obj[fn] : fn(val)), null),
+  hash), {});
 
 // Dataset
 

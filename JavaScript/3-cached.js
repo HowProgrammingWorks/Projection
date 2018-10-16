@@ -5,10 +5,9 @@
 const projection = meta => {
   const keys = Object.keys(meta);
   return obj => keys.reduce((hash, key) => (
-    hash[key] = meta[key].reduce(
-      (val, fn, i) => (i === 0 ? obj[fn] : fn(val)), null
-    ), hash
-  ), {});
+    hash[key] = meta[key]
+      .reduce((val, fn, i) => (i === 0 ? obj[fn] : fn(val)), null),
+    hash), {});
 };
 
 // Dataset
