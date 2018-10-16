@@ -61,7 +61,7 @@ const persons = [
 
 const md = [
   'name',
-  'place', d => '<' + d.city.toUpperCase() + '>',
+  'place', d => `<${d.city.toUpperCase()}>`,
   'born',
   'age', d => (
     new Date().getFullYear() -

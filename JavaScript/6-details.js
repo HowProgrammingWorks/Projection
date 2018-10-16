@@ -53,7 +53,7 @@ const persons = [
 
 const md1 = {
   name: ['name'],
-  place: ['city', s => '<' + s.toUpperCase() + '>'],
+  place: ['city', s => `<${s.toUpperCase()}>`],
   born: ['born'],
   age: ['born', year => (
     new Date().getFullYear() -
