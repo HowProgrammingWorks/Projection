@@ -46,7 +46,7 @@ const persons = [
     { name: 'Karachi', population: 14910352, country: 'Pakistan' },
     { name: 'Istanbul', population: 14160467, country: 'Turkey' },
     { name: 'Tianjin', population: 15200000, country: 'China' }
-  ] }
+  ] },
 ];
 
 // Metadata
