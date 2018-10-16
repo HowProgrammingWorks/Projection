@@ -8,9 +8,9 @@ const projection = meta => {
     const hash = {};
     keys.forEach(key => {
       const def = meta[key];
-      let val = obj[def[0]];
-      if (def.length > 1) val = def[1](val);
-      hash[key] = val;
+      const [field, fn] = def;
+      const val = obj[field];
+      hash[key] = fn ? fn(val) : val;
     });
     return hash;
   };
@@ -30,7 +30,7 @@ const persons = [
 
 const md = {
   name: ['name'],
-  place: ['city', s => '<' + s.toUpperCase() + '>'],
+  place: ['city', s => `<${s.toUpperCase()}>`],
   age: ['born', year => (
     new Date().getFullYear() -
     new Date(year + '').getFullYear()
