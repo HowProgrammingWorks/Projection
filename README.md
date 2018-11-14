@@ -1,2 +1,1 @@
-# Projection
-Data structures projection
+# Data structures projection
