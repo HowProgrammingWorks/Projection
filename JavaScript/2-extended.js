@@ -24,7 +24,7 @@ const md = {
   name: ['name'],
   place: ['city', s => '<' + s.toUpperCase() + '>'],
   age: ['born', year => (
-    new Date().getFullYear() - new Date(year + '').getFullYear()
+    new Date().getFullYear() - new Date(year.toString()).getFullYear()
   )]
 };
 

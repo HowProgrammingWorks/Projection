@@ -41,7 +41,7 @@ const persons = [
 
 const age = year =>
   new Date().getFullYear() -
-  new Date(year + '').getFullYear();
+  new Date(year.toString()).getFullYear();
 
 const upper = s => s.toUpperCase();
 

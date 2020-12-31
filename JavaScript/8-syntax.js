@@ -65,7 +65,7 @@ const md = [
   'born',
   'age', d => (
     new Date().getFullYear() -
-    new Date(d.born + '').getFullYear()
+    new Date(d.born.toString()).getFullYear()
   ),
   'places', [
     'address', d => (d.country.toUpperCase() + ', ' + d.name),

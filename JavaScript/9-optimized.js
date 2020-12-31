@@ -22,7 +22,7 @@ const persons = [
 // Metadata
 
 const year = date => date.getFullYear();
-const diff = y => year(new Date()) - year(new Date(y + ''));
+const diff = y => year(new Date()) - year(new Date(y.toString()));
 const upper = s => s.toUpperCase();
 
 const md = [
