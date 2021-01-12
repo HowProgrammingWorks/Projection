@@ -4,7 +4,7 @@
 
 const projection = meta => {
   const keys = Object.keys(meta);
-  const mapper = obj => {
+  return obj => {
     const hash = {};
     for (const key of keys) {
       const def = meta[key];
@@ -20,7 +20,6 @@ const projection = meta => {
     }
     return hash;
   };
-  return mapper;
 };
 
 // Dataset
