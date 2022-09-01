@@ -2,7 +2,7 @@
 
 // Projection
 
-const projection = metadata => {
+const projection = (metadata) => {
   const meta = {};
   let key;
   for (const item of metadata) {
@@ -13,7 +13,7 @@ const projection = metadata => {
     meta[key] = cast(item);
   }
   const keys = Object.keys(meta);
-  const mapper = obj => {
+  const mapper = (obj) => {
     const hash = {};
     for (const key of keys) {
       const cast = meta[key];
@@ -25,9 +25,9 @@ const projection = metadata => {
   return mapper;
 };
 
-projection.string = name => d => d[name];
-projection.function = fn => d => fn(d);
-projection.object = name => proj => d => {
+projection.string = (name) => (d) => d[name];
+projection.function = (fn) => (d) => fn(d);
+projection.object = (name) => (proj) => (d) => {
   const data = d[name];
   if (!data) return data;
   return data.map(projection(proj));
@@ -61,14 +61,14 @@ const persons = [
 
 const md = [
   'name',
-  'place', d => `<${d.city.toUpperCase()}>`,
+  'place', (d) => `<${d.city.toUpperCase()}>`,
   'born',
-  'age', d => (
+  'age', (d) => (
     new Date().getFullYear() -
     new Date(d.born.toString()).getFullYear()
   ),
   'places', [
-    'address', d => (d.country.toUpperCase() + ', ' + d.name),
+    'address', (d) => (d.country.toUpperCase() + ', ' + d.name),
     'population'
   ]
 ];

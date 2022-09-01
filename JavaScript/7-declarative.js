@@ -2,9 +2,9 @@
 
 // Projection
 
-const projection = meta => {
+const projection = (meta) => {
   const keys = Object.keys(meta);
-  return obj => {
+  return (obj) => {
     const hash = {};
     for (const key of keys) {
       const def = meta[key];
@@ -50,14 +50,14 @@ const persons = [
 
 const md = {
   name: ['name'],
-  place: ['city', s => `<${s.toUpperCase()}>`],
+  place: ['city', (s) => `<${s.toUpperCase()}>`],
   born: ['born'],
-  age: ['born', year => (
+  age: ['born', (year) => (
     new Date().getFullYear() -
     new Date(year.toString()).getFullYear()
   )],
   places: ['places', {
-    address: ['name', s => s.toUpperCase()],
+    address: ['name', (s) => s.toUpperCase()],
     population: ['population']
   }]
 };

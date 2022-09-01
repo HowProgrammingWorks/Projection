@@ -3,7 +3,7 @@
 const partial = (fn, ...args) => (...rest) => fn(...args, ...rest);
 
 const projection = (fields, obj) => Object.keys(obj)
-  .filter(field => fields.includes(field))
+  .filter((field) => fields.includes(field))
   .reduce((hash, key) => (hash[key] = obj[key], hash), {});
 
 // Dataset

@@ -2,9 +2,9 @@
 
 // Projection
 
-const projection = meta => {
+const projection = (meta) => {
   const keys = Object.keys(meta);
-  return obj => keys.reduce((hash, key) => (
+  return (obj) => keys.reduce((hash, key) => (
     hash[key] = meta[key]
       .reduce((val, fn, i) => (i ? fn(val) : obj[fn]), null),
     hash), {});
@@ -24,8 +24,8 @@ const persons = [
 
 const md = {
   name: ['name'],
-  place: ['city', s => '<' + s.toUpperCase() + '>'],
-  age: ['born', year => (
+  place: ['city', (s) => '<' + s.toUpperCase() + '>'],
+  age: ['born', (year) => (
     new Date().getFullYear() - new Date(year.toString()).getFullYear()
   )]
 };

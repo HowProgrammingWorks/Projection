@@ -2,27 +2,27 @@
 
 // Projection
 
-const id = x => x;
+const id = (x) => x;
 
-const projection = meta => src => meta.reduce(
+const projection = (meta) => (src) => meta.reduce(
   (dest, [name, fn = id, field = name]) =>
     (dest[name] = fn(src[field]), dest), {}
 );
 
 // Display
 
-const max = items => Math.max(...items);
-const maxProp = key => items => max(items.map(x => x[key]));
+const max = (items) => Math.max(...items);
+const maxProp = (key) => (items) => max(items.map((x) => x[key]));
 const maxLength = maxProp('length');
-const col = (name, data) => data.map(obj => obj[name].toString());
+const col = (name, data) => data.map((obj) => obj[name].toString());
 
-const render = meta => src => {
+const render = (meta) => (src) => {
   const keys = meta.map(([name]) => name);
-  const maxWidth = keys.map(key => maxLength(col(key, src)));
-  const dest = src.map(obj => maxWidth.map(
+  const maxWidth = keys.map((key) => maxLength(col(key, src)));
+  const dest = src.map((obj) => maxWidth.map(
     (width, i) => obj[keys[i]].toString().padEnd(width + 4)
   ));
-  return dest.map(row => row.join('')).join('\n');
+  return dest.map((row) => row.join('')).join('\n');
 };
 
 // Dataset
@@ -37,9 +37,9 @@ const persons = [
 
 // Metadata
 
-const year = date => date.getFullYear();
-const diff = y => year(new Date()) - year(new Date(y.toString()));
-const upper = s => s.toUpperCase();
+const year = (date) => date.getFullYear();
+const diff = (y) => year(new Date()) - year(new Date(y.toString()));
+const upper = (s) => s.toUpperCase();
 
 const md = [
   ['name'],
@@ -47,7 +47,7 @@ const md = [
   ['age', diff, 'born'],
 ];
 
-const query = person => (
+const query = (person) => (
   person.name !== '' &&
   person.born < 1900 &&
   person.city === 'Rome'

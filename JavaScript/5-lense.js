@@ -5,21 +5,21 @@
 const view = (lens, obj) => lens.get(obj);
 
 const lens = (source, destination = source) => ({
-  get: obj => obj[source],
+  get: (obj) => obj[source],
   set: (val, obj) => ({ ...obj, [destination]: val })
 });
 
-const id = x => x;
+const id = (x) => x;
 
-const field = (name, map = id) => obj => map(view(lens(name), obj));
+const field = (name, map = id) => (obj) => map(view(lens(name), obj));
 
 // Projection
 
-const projection = meta => {
+const projection = (meta) => {
   const keys = Object.keys(meta);
-  return obj => {
+  return (obj) => {
     const hash = {};
-    keys.forEach(key => {
+    keys.forEach((key) => {
       const field = meta[key];
       hash[key] = field(obj);
     });
@@ -39,11 +39,11 @@ const persons = [
 
 // Metadata
 
-const age = year =>
+const age = (year) =>
   new Date().getFullYear() -
   new Date(year.toString()).getFullYear();
 
-const upper = s => s.toUpperCase();
+const upper = (s) => s.toUpperCase();
 
 const md = {
   name: field('name'),

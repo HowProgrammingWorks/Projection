@@ -2,9 +2,9 @@
 
 // Projection
 
-const id = x => x;
+const id = (x) => x;
 
-const projection = meta => src => meta.reduce(
+const projection = (meta) => (src) => meta.reduce(
   (dest, [name, fn = id, field = name]) =>
     (dest[name] = fn(src[field]), dest), {}
 );
@@ -21,9 +21,9 @@ const persons = [
 
 // Metadata
 
-const year = date => date.getFullYear();
-const diff = y => year(new Date()) - year(new Date(y.toString()));
-const upper = s => s.toUpperCase();
+const year = (date) => date.getFullYear();
+const diff = (y) => year(new Date()) - year(new Date(y.toString()));
+const upper = (s) => s.toUpperCase();
 
 const md = [
   ['name'],

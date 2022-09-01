@@ -2,9 +2,9 @@
 
 // Projection
 
-const id = x => x;
+const id = (x) => x;
 
-const projection = meta => src => meta.reduce(
+const projection = (meta) => (src) => meta.reduce(
   (dest, [name, fn = id, field = name]) =>
     (dest[name] = fn(src[field]), dest), {}
 );
@@ -13,18 +13,18 @@ const projection = meta => src => meta.reduce(
 
 const max = (a, b) => (a > b ? a : b);
 
-const render = meta => src => {
+const render = (meta) => (src) => {
   const keys = meta.map(([name]) => name);
-  const width = src.map(obj => keys.map(
-    key => obj[key].toString().length
+  const width = src.map((obj) => keys.map(
+    (key) => obj[key].toString().length
   ));
   const maxWidth = keys.map(
     (key, i) => width.reduce((a, b) => max(a, b[i]), 0)
   );
-  const dest = src.map(obj => keys.map(
+  const dest = src.map((obj) => keys.map(
     (key, i) => obj[key].toString().padEnd(maxWidth[i] + 4)
   ));
-  return dest.map(row => row.join('')).join('\n');
+  return dest.map((row) => row.join('')).join('\n');
 };
 
 // Dataset
@@ -39,9 +39,9 @@ const persons = [
 
 // Metadata
 
-const year = date => date.getFullYear();
-const diff = y => year(new Date()) - year(new Date(y.toString()));
-const upper = s => s.toUpperCase();
+const year = (date) => date.getFullYear();
+const diff = (y) => year(new Date()) - year(new Date(y.toString()));
+const upper = (s) => s.toUpperCase();
 
 const md = [
   ['name'],
