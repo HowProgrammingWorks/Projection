@@ -68,7 +68,7 @@ const md = [
     new Date(d.born.toString()).getFullYear()
   ),
   'places', [
-    'address', (d) => (d.country.toUpperCase() + ', ' + d.name),
+    'address', (d) => `${d.country.toUpperCase()}, ${d.name}`,
     'population'
   ]
 ];

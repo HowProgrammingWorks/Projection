@@ -56,4 +56,4 @@ const data = persons.map(pf);
 
 const renderer = render(md);
 const res = renderer(data);
-console.log('\n' + res + '\n');
+console.log(`\n${res}\n`);

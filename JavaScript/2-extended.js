@@ -22,7 +22,7 @@ const persons = [
 
 const md = {
   name: ['name'],
-  place: ['city', (s) => '<' + s.toUpperCase() + '>'],
+  place: ['city', (s) => `<${s.toUpperCase()}>`],
   age: ['born', (year) => (
     new Date().getFullYear() - new Date(year.toString()).getFullYear()
   )]
